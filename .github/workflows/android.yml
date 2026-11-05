@@ -29,6 +29,12 @@ jobs:
         with:
           channel: stable
           cache: true
+          
+      - name: Create environment file
+        env:
+          GROK_API_KEY: ${{ secrets.GROK_API_KEY }}
+        run: |
+          printf 'GROK_API_KEY=%s\n' "$GROK_API_KEY" > .env
 
       - name: Install dependencies
         run: flutter pub get
